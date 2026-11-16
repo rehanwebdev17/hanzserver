@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hanz | Server</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-image">
+            <img src="mark.webp" alt="Hanz Server" loading="lazy">
+        </div>
+        <div class="divider"></div>
+        
+        <div class="sidebar-scroll-area">
+            <nav class="nav-menu" id="navMenu">
+                <div class="nav-item" data-nav="home"><i data-lucide="home"></i> <span>Home</span></div>
+                <div class="nav-item" data-nav="sys_pictures"><i data-lucide="image"></i> <span>Picture</span></div>
+                <div class="nav-item" data-nav="sys_documents"><i data-lucide="file-text"></i> <span>Document</span></div>
+            </nav>
+
+            <div class="divider" id="pinnedDivider" style="display: none;"></div>
+            <div class="pinned-section" id="pinnedSection">
+                <div class="pinned-title">Pinned</div>
+                <div id="pinnedList"></div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="top-bar">
+            <div class="top-bar-left" id="breadcrumb"></div>
+            <div class="top-bar-right">
+                <div class="search-container">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Search ..." autocomplete="off" spellcheck="false">
+                    <span class="search-icon"><i data-lucide="search"></i></span>
+                </div>
+                <button class="save-btn" id="saveBtn">
+                    <i data-lucide="save"></i><span>Save</span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="content-area" id="contentArea">
+            <div class="grid-view" id="gridView"></div>
+            <div class="empty-state" id="emptyState">
+                <i data-lucide="folder-open"></i>
+                <h2>Folder Kosong</h2>
+                <p>Klik kanan di sini untuk membuat folder atau upload.</p>
+            </div>
+        </div>
+    </main>
+
+    <input type="file" id="fileInput" multiple hidden>
+    <input type="file" id="folderInput" webkitdirectory directory multiple hidden>
+
+    <div class="context-menu" id="emptyContextMenu" hidden>
+        <div class="context-item" id="ctxNewFolder"><i data-lucide="plus"></i><span>New Folder</span></div>
+        <div class="context-item" id="ctxUploadFolder"><i data-lucide="folder-up"></i><span>Upload Folder</span></div>
+        <div class="context-item" id="ctxUploadDocument"><i data-lucide="file-up"></i><span>Upload File</span></div>
+        <div class="context-item" id="ctxPaste" hidden><i data-lucide="clipboard-paste"></i><span>Paste</span></div>
+    </div>
+
+    <div class="context-menu" id="contextMenu" hidden>
+        <div class="context-item" data-action="pin"><i data-lucide="pin"></i><span>Pin to Sidebar</span></div>
+        <div class="context-item" data-action="download"><i data-lucide="download"></i><span>Download</span></div>
+        <div class="context-item" data-action="rename"><i data-lucide="pencil"></i><span>Rename</span></div>
+        <div class="context-item" data-action="copy"><i data-lucide="copy"></i><span>Copy</span></div>
+        <div class="context-item" data-action="cut"><i data-lucide="scissors"></i><span>Cut</span></div>
+        <div class="context-item danger" data-action="delete"><i data-lucide="trash-2"></i><span>Delete</span></div>
+    </div>
+
+    <div class="block-select-rect" id="bsRect"></div>
+    <div class="search-popup" id="searchPopup" hidden></div>
+
+    <div id="lockOverlay"></div>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
